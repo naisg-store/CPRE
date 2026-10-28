@@ -6,9 +6,9 @@
     <title>College Park Realty | Featuring Michelle O'Bryan</title>
     <style>
         :root {
-            /* Updated to match the black and gold of the CP logo */
-            --primary: #0a0a0a; /* Very dark/black for the header to blend the logo */
-            --secondary: #c9a050; /* Gold */
+            var(--primary): #0a0a0a; 
+            --primary: #0a0a0a;
+            --secondary: #c9a050; 
             --light-bg: #f4f4f4;
             --text-dark: #333;
             --white: #ffffff;
@@ -26,8 +26,10 @@
             color: var(--text-dark);
             line-height: 1.6;
             background-color: var(--white);
+            overflow-x: hidden;
         }
 
+        /* --- Header & Navigation --- */
         header {
             background-color: var(--primary);
             color: var(--white);
@@ -50,7 +52,7 @@
         }
 
         .header-logo {
-            height: 60px; /* Adjust based on preference */
+            height: 60px;
             width: auto;
         }
 
@@ -72,6 +74,7 @@
             color: var(--secondary);
         }
 
+        /* --- Hero Section --- */
         .hero {
             background: linear-gradient(rgba(10, 10, 10, 0.8), rgba(10, 10, 10, 0.8)), url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80') center/cover;
             color: var(--white);
@@ -118,6 +121,7 @@
             font-weight: bold;
             font-size: 1.1rem;
             transition: background 0.3s, transform 0.2s;
+            display: inline-block;
         }
 
         .btn:hover {
@@ -125,6 +129,7 @@
             transform: translateY(-2px);
         }
 
+        /* --- General Sections --- */
         .section {
             padding: 4rem 5%;
         }
@@ -157,6 +162,7 @@
             text-align: center;
         }
 
+        /* --- Grid & Cards --- */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -217,10 +223,148 @@
             border-top: 3px solid var(--secondary);
         }
 
-        footer a {
+        /* --- Business Card Modal Overlay --- */
+        .modal-overlay {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .bcard {
+            background: var(--white);
+            width: 90%;
+            max-width: 400px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+            position: relative;
+            transform: translateY(50px);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .modal-overlay.active .bcard {
+            transform: translateY(0);
+        }
+
+        .bcard-header {
+            background: var(--primary);
+            color: var(--secondary);
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            border-bottom: 5px solid var(--secondary);
+        }
+
+        .bcard-header img {
+            height: 60px;
+            margin-bottom: 10px;
+        }
+
+        .bcard-header h2 {
+            font-size: 1.4rem;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .bcard-body {
+            padding: 2rem 2rem 2.5rem;
+            color: var(--text-dark);
+            text-align: center;
+        }
+
+        .bcard-body h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 0.2rem;
+        }
+
+        .bcard-body p.title {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .bcard-info {
+            text-align: left;
+            margin-bottom: 2rem;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .bcard-info a {
+            color: var(--text-dark);
+            text-decoration: none;
+        }
+
+        .bcard-info a:hover {
             color: var(--secondary);
         }
 
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 2rem;
+            color: var(--white);
+            cursor: pointer;
+            background: none;
+            border: none;
+            line-height: 1;
+            transition: color 0.2s;
+        }
+
+        .close-btn:hover {
+            color: var(--secondary);
+        }
+
+        .bcard-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .bcard-btn {
+            flex: 1;
+            padding: 12px;
+            background: var(--secondary);
+            color: var(--primary);
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+
+        .bcard-btn.outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .bcard-btn:hover {
+            background: #e3b864;
+        }
+        
+        .bcard-btn.outline:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        /* --- Media Queries --- */
         @media (max-width: 768px) {
             header {
                 flex-direction: column;
@@ -236,6 +380,8 @@
             }
             nav a {
                 margin: 0 0.5rem;
+                display: inline-block;
+                margin-bottom: 10px;
             }
             .hero h2 {
                 font-size: 2.2rem;
@@ -245,6 +391,33 @@
 </head>
 <body>
 
+    <!-- Business Card Modal Overlay -->
+    <div id="bcardModal" class="modal-overlay">
+        <div class="bcard">
+            <button class="close-btn" onclick="closeModal()" aria-label="Close modal">&times;</button>
+            <div class="bcard-header">
+                <img src="CP-logo.jpg" alt="College Park Realty Logo">
+                <h2>College Park Realty</h2>
+            </div>
+            <div class="bcard-body">
+                <h3>Michelle O'Bryan</h3>
+                <p class="title">REALTOR® | DRE #01971838</p>
+                
+                <div class="bcard-info">
+                    <p>📱 <a href="tel:5628224571">(562) 822-4571</a></p>
+                    <p>✉️ <a href="mailto:michelle.obryan1@verizon.net">michelle.obryan1@verizon.net</a></p>
+                    <p>📍 10791 Los Alamitos Blvd<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Los Alamitos, CA 90720</p>
+                </div>
+                
+                <div class="bcard-actions">
+                    <a href="tel:5628224571" class="bcard-btn">Call Now</a>
+                    <a href="mailto:michelle.obryan1@verizon.net" class="bcard-btn outline">Email</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Website Content -->
     <header>
         <a href="#" class="logo-container">
             <img src="CP-logo.jpg" alt="College Park Realty Logo" class="header-logo">
@@ -360,5 +533,35 @@
         <p><small>Editorial Note: Reviews reflect individual client experiences and should not be understood as promises of similar results for every property.</small></p>
     </footer>
 
+    <!-- JavaScript for Modal Functionality -->
+    <script>
+        const modal = document.getElementById('bcardModal');
+
+        // Function to close modal
+        function closeModal() {
+            modal.classList.remove('active');
+            
+            // Clean up the URL so refreshing doesn't re-trigger it unnecessarily
+            if (window.history && window.history.replaceState) {
+                history.replaceState(null, null, window.location.pathname + window.location.search);
+            } else {
+                window.location.hash = '';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if the URL contains the #BusinessCard hash on load
+            if (window.location.hash === '#BusinessCard') {
+                modal.classList.add('active');
+            }
+
+            // Close the modal when clicking anywhere on the dark overlay background
+            modal.addEventListener('click', function(event) {
+                if (event.target === modal) {
+                    closeModal();
+                }
+            });
+        });
+    </script>
 </body>
 </html>
