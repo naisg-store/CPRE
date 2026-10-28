@@ -6,7 +6,6 @@
     <title>College Park Realty | Featuring Michelle O'Bryan</title>
     <style>
         :root {
-            var(--primary): #0a0a0a; 
             --primary: #0a0a0a;
             --secondary: #c9a050; 
             --light-bg: #f4f4f4;
@@ -223,9 +222,9 @@
             border-top: 3px solid var(--secondary);
         }
 
-        /* --- Business Card Modal Overlay --- */
+        /* --- Business Card Modal Overlay (UPDATED) --- */
         .modal-overlay {
-            display: none; /* Hidden by default */
+            display: none; 
             position: fixed;
             top: 0; 
             left: 0; 
@@ -261,42 +260,48 @@
             transform: translateY(0);
         }
 
-        .bcard-header {
-            background: var(--primary);
-            color: var(--secondary);
-            padding: 2.5rem 1.5rem;
-            text-align: center;
-            border-bottom: 5px solid var(--secondary);
-        }
-
-        .bcard-header img {
-            height: 60px;
-            margin-bottom: 10px;
-        }
-
-        .bcard-header h2 {
-            font-size: 1.4rem;
-            letter-spacing: 1px;
-            font-weight: 600;
+        /* Compact top accent line instead of a large header */
+        .bcard-top-accent {
+            height: 6px;
+            background: var(--secondary);
+            width: 100%;
         }
 
         .bcard-body {
             padding: 2rem 2rem 2.5rem;
             color: var(--text-dark);
-            text-align: center;
         }
 
-        .bcard-body h3 {
-            font-size: 1.8rem;
+        /* Logo and Name Side-by-Side */
+        .bcard-profile-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .bcard-inline-logo {
+            height: 55px;
+            width: auto;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .bcard-profile-row h3 {
+            font-size: 1.5rem;
             color: var(--primary);
-            margin-bottom: 0.2rem;
+            margin: 0 0 2px 0;
+            line-height: 1.1;
         }
 
-        .bcard-body p.title {
-            font-size: 1rem;
+        .bcard-profile-row p.title {
+            font-size: 0.9rem;
             color: #666;
-            margin-bottom: 1.5rem;
-            font-weight: 500;
+            margin: 0;
+            font-weight: 600;
+            letter-spacing: 0.5px;
         }
 
         .bcard-info {
@@ -304,6 +309,7 @@
             margin-bottom: 2rem;
             font-size: 1.05rem;
             line-height: 1.8;
+            padding-left: 10px; /* Slight indent for visual balance */
         }
 
         .bcard-info a {
@@ -315,21 +321,23 @@
             color: var(--secondary);
         }
 
+        /* Dark close button to show up on the white background */
         .close-btn {
             position: absolute;
             top: 15px;
-            right: 20px;
+            right: 15px;
             font-size: 2rem;
-            color: var(--white);
+            color: #999;
             cursor: pointer;
             background: none;
             border: none;
             line-height: 1;
             transition: color 0.2s;
+            z-index: 10;
         }
 
         .close-btn:hover {
-            color: var(--secondary);
+            color: var(--primary);
         }
 
         .bcard-actions {
@@ -391,17 +399,21 @@
 </head>
 <body>
 
-    <!-- Business Card Modal Overlay -->
+    <!-- Compact Business Card Modal Overlay -->
     <div id="bcardModal" class="modal-overlay">
         <div class="bcard">
             <button class="close-btn" onclick="closeModal()" aria-label="Close modal">&times;</button>
-            <div class="bcard-header">
-                <img src="CP-logo.jpg" alt="College Park Realty Logo">
-                <h2>College Park Realty</h2>
-            </div>
+            <div class="bcard-top-accent"></div>
+            
             <div class="bcard-body">
-                <h3>Michelle O'Bryan</h3>
-                <p class="title">REALTOR® | DRE #01971838</p>
+                <!-- Inline Logo and Name -->
+                <div class="bcard-profile-row">
+                    <img src="CP-logo.jpg" alt="College Park Realty Logo" class="bcard-inline-logo">
+                    <div>
+                        <h3>Michelle O'Bryan</h3>
+                        <p class="title">REALTOR® | DRE #01971838</p>
+                    </div>
+                </div>
                 
                 <div class="bcard-info">
                     <p>📱 <a href="tel:5628224571">(562) 822-4571</a></p>
