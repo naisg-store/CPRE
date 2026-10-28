@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Michelle O'Bryan | California Real Estate Professional</title>
+    <title>College Park Realty | Featuring Michelle O'Bryan</title>
     <style>
         :root {
-            --primary: #003b5c;
-            --secondary: #c41230;
+            /* Updated to match the black and gold of the CP logo */
+            --primary: #0a0a0a; /* Very dark/black for the header to blend the logo */
+            --secondary: #c9a050; /* Gold */
             --light-bg: #f4f4f4;
             --text-dark: #333;
             --white: #ffffff;
@@ -30,18 +31,33 @@
         header {
             background-color: var(--primary);
             color: var(--white);
-            padding: 1rem 5%;
+            padding: 0.5rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             position: sticky;
             top: 0;
             z-index: 1000;
+            border-bottom: 2px solid var(--secondary);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: var(--white);
+        }
+
+        .header-logo {
+            height: 60px; /* Adjust based on preference */
+            width: auto;
         }
 
         header h1 {
             font-size: 1.5rem;
             font-weight: 600;
+            letter-spacing: 1px;
         }
 
         nav a {
@@ -49,6 +65,7 @@
             text-decoration: none;
             margin-left: 1.5rem;
             font-weight: 500;
+            transition: color 0.3s;
         }
 
         nav a:hover {
@@ -56,7 +73,7 @@
         }
 
         .hero {
-            background: linear-gradient(rgba(0, 59, 92, 0.7), rgba(0, 59, 92, 0.7)), url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80') center/cover;
+            background: linear-gradient(rgba(10, 10, 10, 0.8), rgba(10, 10, 10, 0.8)), url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80') center/cover;
             color: var(--white);
             text-align: center;
             padding: 5rem 2rem;
@@ -69,13 +86,21 @@
             max-width: 400px;
             width: 100%;
             border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            margin-bottom: 1.5rem;
+            border: 3px solid var(--secondary);
         }
 
         .hero h2 {
-            font-size: 2.5rem;
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            color: var(--secondary);
+        }
+        
+        .hero h3 {
+            font-size: 1.5rem;
             margin-bottom: 1rem;
+            font-weight: 400;
         }
 
         .hero p {
@@ -86,16 +111,18 @@
 
         .btn {
             background-color: var(--secondary);
-            color: var(--white);
+            color: var(--primary);
             padding: 0.8rem 2rem;
             text-decoration: none;
             border-radius: 5px;
             font-weight: bold;
-            transition: background 0.3s;
+            font-size: 1.1rem;
+            transition: background 0.3s, transform 0.2s;
         }
 
         .btn:hover {
-            background-color: #a00e26;
+            background-color: #e3b864;
+            transform: translateY(-2px);
         }
 
         .section {
@@ -111,6 +138,17 @@
             font-size: 2rem;
             margin-bottom: 2rem;
             color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: var(--secondary);
+            margin: 10px auto 0;
         }
 
         .about-content, .contact-content {
@@ -121,7 +159,7 @@
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
             max-width: 1200px;
             margin: auto;
@@ -131,8 +169,9 @@
             background: var(--white);
             padding: 1.5rem;
             border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
             text-align: center;
+            border-top: 4px solid var(--secondary);
         }
 
         .card h4 {
@@ -147,6 +186,7 @@
             border-left: 5px solid var(--secondary);
             margin-bottom: 1.5rem;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            font-style: italic;
         }
 
         .areas-list {
@@ -163,8 +203,9 @@
             background: var(--white);
             padding: 0.5rem 1.5rem;
             border-radius: 20px;
-            border: 1px solid #ddd;
+            border: 1px solid #ccc;
             font-weight: 500;
+            color: var(--primary);
         }
 
         footer {
@@ -173,12 +214,22 @@
             text-align: center;
             padding: 2rem;
             font-size: 0.9rem;
+            border-top: 3px solid var(--secondary);
+        }
+
+        footer a {
+            color: var(--secondary);
         }
 
         @media (max-width: 768px) {
             header {
                 flex-direction: column;
                 text-align: center;
+                padding: 1rem;
+            }
+            .logo-container {
+                flex-direction: column;
+                gap: 5px;
             }
             nav {
                 margin-top: 1rem;
@@ -186,11 +237,8 @@
             nav a {
                 margin: 0 0.5rem;
             }
-            .hero img {
-                max-width: 90%;
-            }
             .hero h2 {
-                font-size: 1.8rem;
+                font-size: 2.2rem;
             }
         }
     </style>
@@ -198,11 +246,14 @@
 <body>
 
     <header>
-        <h1>Michelle O'Bryan</h1>
+        <a href="#" class="logo-container">
+            <img src="CP-logo.jpg" alt="College Park Realty Logo" class="header-logo">
+            <h1>College Park Realty</h1>
+        </a>
         <nav>
-            <a href="#about">About</a>
-            <a href="#portfolio">Recent Sales</a>
-            <a href="#reviews">Reviews</a>
+            <a href="#about">Our Team</a>
+            <a href="#portfolio">Featured Sales</a>
+            <a href="#reviews">Testimonials</a>
             <a href="#areas">Service Areas</a>
             <a href="#contact">Contact</a>
         </nav>
@@ -211,50 +262,51 @@
     <section class="hero">
         <img src="1000043867.jpg" alt="Michelle O'Bryan Open House Sign">
         
-        <h2>"Need to Buy or Sell? Call Michelle!"</h2>
-        <p>Helping Buyers and Sellers Across Southern California with College Park Realty, serving the community since 1975.</p>
-        <a href="#contact" class="btn">Get in Touch</a>
+        <h2>College Park Realty</h2>
+        <h3>Proudly Serving Southern California Since 1975</h3>
+        <p>Featuring our premier real estate specialists, The O'Bryan Team. <br><strong>"Need to Buy or Sell? Call Michelle!"</strong></p>
+        <a href="#contact" class="btn">Schedule a Consultation</a>
     </section>
 
     <section id="about" class="section section-light">
-        <h3 class="section-title">The O'Bryan Team</h3>
+        <h3 class="section-title">Meet The O'Bryan Team</h3>
         <div class="about-content">
-            <p>Michelle O’Bryan is a California-licensed real estate salesperson affiliated with College Park Realty in Los Alamitos. Licensed since January 2015, she has represented buyers and sellers in residential transactions across Southern California, with additional documented sales in the Sacramento region.</p>
+            <p>At College Park Realty, we pride ourselves on matching clients with exceptional representation. Michelle O’Bryan is a California-licensed real estate salesperson who has represented buyers and sellers in residential transactions across Southern California, with additional documented sales in the Sacramento region.</p>
             <br>
-            <p>Operating as a dedicated Mother/Daughter Team alongside Lynnette O'Bryan-Witten, Michelle offers an established professional history that includes transactions in coastal communities, suburban neighborhoods, and condominium developments. Her California Department of Real Estate salesperson license is #01971838.</p>
+            <p>Operating as a dedicated Mother/Daughter Team alongside Lynnette O'Bryan-Witten, Michelle brings over a decade of licensure (since January 2015) and an established professional history. From coastal communities to suburban neighborhoods and condominium developments, the O'Bryan Team delivers unparalleled service under the College Park Realty banner.</p>
         </div>
     </section>
 
     <section id="portfolio" class="section">
-        <h3 class="section-title">Experience & Recent Transactions</h3>
+        <h3 class="section-title">Recent Transactions</h3>
         <div class="grid">
             <div class="card">
                 <h4>Redondo Beach</h4>
-                <p><strong>1800 South Pacific Coast Highway, Unit 61</strong></p>
+                <p><strong>1800 S Pacific Coast Hwy, #61</strong></p>
                 <p>Type: Condominium</p>
                 <p>Represented: Seller</p>
-                <p>Closed: $1,365,000 (August 2024)</p>
+                <p>Closed: $1,365,000</p>
             </div>
             <div class="card">
                 <h4>Garden Grove</h4>
-                <p><strong>Single-Family Property</strong></p>
-                <p>Type: Single-Family Residence</p>
+                <p><strong>Premium Residence</strong></p>
+                <p>Type: Single-Family</p>
                 <p>Represented: Seller</p>
-                <p>Closed: $1,250,000 (April 2022)</p>
+                <p>Closed: $1,250,000</p>
             </div>
             <div class="card">
                 <h4>Los Alamitos</h4>
-                <p><strong>Residential Property</strong></p>
-                <p>Type: Single-Family Residence</p>
+                <p><strong>Local Residence</strong></p>
+                <p>Type: Single-Family</p>
                 <p>Represented: Buyer</p>
-                <p>Closed: $885,000 (January 2024)</p>
+                <p>Closed: $885,000</p>
             </div>
             <div class="card">
                 <h4>Paramount</h4>
-                <p><strong>Residential Property</strong></p>
-                <p>Type: Single-Family Residence</p>
+                <p><strong>Suburban Property</strong></p>
+                <p>Type: Single-Family</p>
                 <p>Represented: Seller</p>
-                <p>Closed: $810,000 (January 2024)</p>
+                <p>Closed: $810,000</p>
             </div>
         </div>
     </section>
@@ -264,19 +316,19 @@
         <div class="about-content">
             <div class="testimonial">
                 <p>⭐⭐⭐⭐⭐</p>
-                <p><em>"Worked with Michelle on both a purchase and a sale in Long Beach. Her guidance throughout the process and her ability to walk us through each step was invaluable."</em></p>
-                <p><small>- Long Beach Client (Zillow Review)</small></p>
+                <p>"Worked with Michelle on both a purchase and a sale in Long Beach. Her guidance throughout the process and her ability to walk us through each step was invaluable."</p>
+                <p><small>- Long Beach Client</small></p>
             </div>
             <div class="testimonial">
                 <p>⭐⭐⭐⭐⭐</p>
-                <p><em>"Michelle was fantastic with her responsiveness and open-house efforts. Thanks to her hard work, our home sold within 21 days after receiving multiple offers."</em></p>
-                <p><small>- O'Bryan Team Client (Zillow Review)</small></p>
+                <p>"Michelle was fantastic with her responsiveness and open-house efforts. Thanks to her hard work, our home sold within 21 days after receiving multiple offers."</p>
+                <p><small>- O'Bryan Team Client</small></p>
             </div>
         </div>
     </section>
 
     <section id="areas" class="section">
-        <h3 class="section-title">Service Areas</h3>
+        <h3 class="section-title">Our Service Areas</h3>
         <ul class="areas-list">
             <li>Los Alamitos</li>
             <li>Long Beach</li>
@@ -292,18 +344,19 @@
     </section>
 
     <section id="contact" class="section section-light">
-        <h3 class="section-title">Contact Michelle O'Bryan</h3>
+        <h3 class="section-title">Contact Us Today</h3>
         <div class="contact-content">
-            <p><strong>Phone:</strong> 562-822-4571</p>
+            <p><strong>College Park Realty Inc.</strong></p>
+            <p>10791 Los Alamitos Boulevard<br>Los Alamitos, CA 90720</p>
+            <br>
+            <p><strong>Direct Line (Michelle O'Bryan):</strong> 562-822-4571</p>
             <p><strong>Email:</strong> michelle.obryan1@verizon.net</p>
-            <p><strong>Office:</strong> 10791 Los Alamitos Boulevard, Los Alamitos, CA 90720</p>
-            <p><strong>Brokerage:</strong> College Park Realty Inc. (RE/MAX College Park Realty)</p>
             <p><strong>DRE License:</strong> #01971838</p>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 Michelle O'Bryan Real Estate. All rights reserved.</p>
+        <p>&copy; 2026 College Park Realty. All rights reserved.</p>
         <p><small>Editorial Note: Reviews reflect individual client experiences and should not be understood as promises of similar results for every property.</small></p>
     </footer>
 
