@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>College Park Realty | Featuring Michelle O'Bryan</title>
+    
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="favicon.png">
+    
     <style>
         :root {
             --primary: #0a0a0a;
@@ -267,14 +270,12 @@
             width: 100%;
         }
 
-        /* New Compact Black Header */
         .bcard-header-compact {
             background-color: var(--primary);
-            padding: 1.5rem 1.5rem 1.25rem 1.5rem; /* Kept tight to prevent bloat */
+            padding: 1.5rem 1.5rem 1.25rem 1.5rem; 
             position: relative;
         }
 
-        /* Logo and Name Side-by-Side */
         .bcard-profile-row {
             display: flex;
             align-items: center;
@@ -291,21 +292,20 @@
 
         .bcard-profile-row h3 {
             font-size: 1.5rem;
-            color: var(--secondary); /* Updated to gold */
+            color: var(--secondary);
             margin: 0 0 2px 0;
             line-height: 1.1;
         }
 
         .bcard-profile-row p.title {
             font-size: 0.9rem;
-            color: var(--secondary); /* Updated to gold */
+            color: var(--secondary);
             margin: 0;
             font-weight: 500;
             letter-spacing: 0.5px;
             opacity: 0.9;
         }
 
-        /* Adjusted body padding to account for the header */
         .bcard-body {
             padding: 1.5rem 2rem 2rem;
             color: var(--text-dark);
@@ -328,7 +328,6 @@
             color: var(--secondary);
         }
 
-        /* Updated close button to be visible on black */
         .close-btn {
             position: absolute;
             top: 10px;
@@ -362,6 +361,7 @@
             font-weight: bold;
             border-radius: 6px;
             transition: background 0.2s;
+            cursor: pointer;
         }
 
         .bcard-btn.outline {
@@ -411,7 +411,6 @@
         <div class="bcard">
             <div class="bcard-top-accent"></div>
             
-            <!-- New Compact Black Header Area -->
             <div class="bcard-header-compact">
                 <button class="close-btn" onclick="closeModal()" aria-label="Close modal">&times;</button>
                 <div class="bcard-profile-row">
@@ -432,7 +431,8 @@
                 
                 <div class="bcard-actions">
                     <a href="tel:5628224571" class="bcard-btn">Call Now</a>
-                    <a href="mailto:michelle.obryan1@verizon.net" class="bcard-btn outline">Email</a>
+                    <!-- Swapped Email for Save Contact -->
+                    <a href="#" onclick="downloadVCard(); return false;" class="bcard-btn outline">Save Contact</a>
                 </div>
             </div>
         </div>
@@ -554,7 +554,7 @@
         <p><small>Editorial Note: Reviews reflect individual client experiences and should not be understood as promises of similar results for every property.</small></p>
     </footer>
 
-    <!-- JavaScript for Modal Functionality -->
+    <!-- JavaScript for Modal Functionality and vCard Generation -->
     <script>
         const modal = document.getElementById('bcardModal');
 
@@ -562,7 +562,6 @@
         function closeModal() {
             modal.classList.remove('active');
             
-            // Clean up the URL so refreshing doesn't re-trigger it unnecessarily
             if (window.history && window.history.replaceState) {
                 history.replaceState(null, null, window.location.pathname + window.location.search);
             } else {
@@ -570,13 +569,39 @@
             }
         }
 
+        // Function to dynamically generate and download a vCard (.vcf)
+        function downloadVCard() {
+            const vcardData = `BEGIN:VCARD
+VERSION:3.0
+N:O'Bryan;Michelle;;;
+FN:Michelle O'Bryan
+ORG:College Park Realty
+TITLE:REALTOR® | DRE #01971838
+TEL;TYPE=WORK,VOICE:(562) 822-4571
+EMAIL;TYPE=WORK:michelle.obryan1@verizon.net
+ADR;TYPE=WORK:;;10791 Los Alamitos Blvd;Los Alamitos;CA;90720;USA
+URL:${window.location.origin}
+END:VCARD`;
+
+            const blob = new Blob([vcardData], { type: 'text/vcard;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'Michelle_OBryan.vcf';
+            
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            URL.revokeObjectURL(url);
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
-            // Check if the URL contains the #BusinessCard hash on load
             if (window.location.hash === '#BusinessCard') {
                 modal.classList.add('active');
             }
 
-            // Close the modal when clicking anywhere on the dark overlay background
             modal.addEventListener('click', function(event) {
                 if (event.target === modal) {
                     closeModal();
